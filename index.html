@@ -611,11 +611,17 @@ Hint: ${q.hint}`;
       b.onclick=()=>answerTebak(c,q.sila);opts.appendChild(b);
     });
   }else if(currentMode==='benar'){
-    document.getElementById('gameQ').textContent=q.q;
-    document.getElementById('gameOpts').style.display='none';
-    document.getElementById('gameBsBtns').style.display='flex';
-    startTimer();
-  }
+  document.getElementById('gameQ').textContent=q.q;
+  document.getElementById('gameOpts').style.display='none';
+  const bsBtns = document.getElementById('gameBsBtns');
+  bsBtns.style.display='flex';
+  // Reset tombol dulu sebelum tampil
+  bsBtns.querySelectorAll('.bs-btn').forEach(b => {
+    b.disabled = false;
+    b.classList.remove('correct','wrong');
+  });
+  startTimer();
+}
 }
 
 function startTimer(){
